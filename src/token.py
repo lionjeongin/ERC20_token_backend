@@ -25,7 +25,8 @@ class Token:
         return self.__account.address
 
     def balanceOf(self, address) -> int:
-        return self.__contract.functions.balanceOf(address).call()
+        checksum_address = self.__web3.to_checksum_address(address)
+        return self.__contract.functions.balanceOf(checksum_address).call()
     
     def balanceOfMe(self) -> int:
         return self.balanceOf(self.__account.address)
