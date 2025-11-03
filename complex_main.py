@@ -1,10 +1,12 @@
 from flask import Flask
 from src.routes.health import health_bp
+from src.routes.token import token_bp
+
+app = Flask(__name__)
 
 def create_app():
-    app = Flask(__name__)
-
     app.register_blueprint(health_bp)
+    app.register_blueprint(token_bp)
 
     return app
 

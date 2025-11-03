@@ -7,3 +7,8 @@ health_bp = Blueprint("health", __name__, url_prefix="/health")
 def health():
     message = health_service()
     return make_response(message, 200)
+
+@health_bp.route("/<name>", methods=["GET"])
+def print_my_name(name):
+    return make_response(name, 200)
+
