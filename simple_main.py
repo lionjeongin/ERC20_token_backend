@@ -1,4 +1,4 @@
-from flask import Flask, make_response
+from flask import Flask, make_response, request
 from src.token import Token
 
 app = Flask(__name__)
@@ -31,6 +31,21 @@ def get_balance(address):
 #   - 200
 #   - {"tx_hash": <string>}
 
+@app.route("/token/transfer", methods=["POST"])
+def transfer(): 
+    
+    req_data = request.get_json()
+    to = req_data["to"]
+    value = req_data["value"]
+
+    token = Token("camera unaware proud defense toe organ pull cross mobile reform buzz forward")
+    tx_hash = token.transfer(to, value)
+
+    resp = {
+        "tx_hash": tx_hash
+    }
+
+    return make_response(resp, 200)
 
 if __name__ == "__main__":
     app.run("0.0.0.0", 5050)

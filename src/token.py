@@ -45,4 +45,4 @@ class Token:
         print(f"tx sent as {tx_hash}, waiting for confirmation...")
 
         receipt = self.__web3.eth.wait_for_transaction_receipt(tx_hash, timeout=180)
-        return receipt
+        return tx_hash.hex()
